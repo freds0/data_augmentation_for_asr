@@ -1,5 +1,5 @@
 {
-    "data_aug":{
+    "aug_data":{
         // Data Augmentation options: noise, pitch, stretch, external_noise, shift, freq_mask
         "aug_options": ["full_mix"],
         "noises_filepath":"noises_list.txt",

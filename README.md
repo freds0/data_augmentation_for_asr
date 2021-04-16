@@ -99,3 +99,7 @@ Based on Google work:
 
 ## Contact
 - Frederico Santos de Oliveira (fred.santos.oliveira (at) gmail.com)
+
+## Some Great Works
+- [https://github.com/nxbyte/PythonAudioEffects]
+- [https://github.com/facebookresearch/WavAugment]

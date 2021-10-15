@@ -15,17 +15,19 @@ sampling_rate = 16000
 
 def insert_noise(dataset_dir, dataset_csv, output_folder, config):
 
-    data_aug_options = {i: config.data_aug['aug_options'][i] for i in range(0, len(config.data_aug['aug_options']))}
+    data_aug_options = {i: config.aug_data['aug_options'][i] for i in range(0, len(config.aug_data['aug_options']))}
+
+    del config.aug_data["aug_options"]
 
     sa = SpecAugmentation(config.audio) 
     aa = AudioAugmentation(sampling_rate)
-    da = DataAugmentation(sa, aa, sampling_rate, **config.data_aug)
+    da = DataAugmentation(sa, aa, sampling_rate, **config.aug_data)
 
-    metadata_csv = os.path.join(dataset_dir, dataset_csv)
-    with open(metadata_csv, "r") as f:
+    #metadata_csv = os.path.join(dataset_dir, dataset_csv)
+    with open(dataset_csv, "r") as f:
         dataset_files = f.readlines()[1:]
 
-    with open(config.data_aug['noises_filepath'], "r") as f:
+    with open(config.aug_data['noises_filepath'], "r") as f:
         noise_file = f.readlines()
 
     os.makedirs(output_folder, exist_ok=True)
@@ -88,7 +90,7 @@ def insert_noise(dataset_dir, dataset_csv, output_folder, config):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--base_dir', default='./') 
-    parser.add_argument('-d', '--dataset_dir', default='input', help='Name of csv file')   
+    parser.add_argument('-d', '--dataset_dir', default='', help='Name of csv file')   
     parser.add_argument('-i', '--input_csv', default='dataset-22k/metadata.csv', help='Name of csv file')   
     parser.add_argument('-c', '--config_path', type=str, required=True,
                         help="json file with configurations")
@@ -96,7 +98,6 @@ def main():
     args = parser.parse_args()
 
     config = load_config(args.config_path)
-
     output_folder = os.path.join(args.base_dir, args.output_path)
     insert_noise(args.dataset_dir, args.input_csv, output_folder, config)
 

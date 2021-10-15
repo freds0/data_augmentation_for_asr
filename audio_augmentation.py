@@ -199,7 +199,7 @@ class AudioAugmentation:
             split_title: True or False.
             max_len: maximum length of the audio data to be plotted.
         '''
-	    if max_len is not None:
+        if max_len is not None:
             aug_waveform = aug_waveform[:max_len]
             clean_waveform = clean_waveform[:max_len]
 
@@ -211,7 +211,7 @@ class AudioAugmentation:
         fig.text(0.5, 0.18, title, horizontalalignment='center', fontsize=16)
 
         #target spectrogram subplot
-	    if clean_waveform is not None:
+        if clean_waveform is not None:
             ax1 = fig.add_subplot(311)
             ax2 = fig.add_subplot(312)
             im = ax1.plot(np.linspace(0, 1, len(clean_waveform)), clean_waveform)

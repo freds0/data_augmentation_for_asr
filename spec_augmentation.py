@@ -140,7 +140,7 @@ class SpecAugmentation:
             max_len: maximum length of the audio data to be plotted.
             auto_aspect: True or False.
         '''
-	    if max_len is not None:
+        if max_len is not None:
             aug_spectrogram = aug_spectrogram[:max_len]
             clean_spectrogram = clean_spectrogram[:max_len]
 
@@ -175,6 +175,17 @@ class SpecAugmentation:
         plt.tight_layout()
         plt.savefig(path, format='png')
         plt.close()
+
+    def inv_spectrogram(self, spec_aug, phase):
+        '''
+        Return an audio file given the spectrogram and the phase extracted initially.
+        Args:
+            spec_aug: augmented magnitude spectrogram.
+            phase: original phase of audio.
+
+        '''
+        enhanced = librosa.istft(spec_aug * phase, hop_length=self.hop_length, win_length=self.win_length)
+        return enhanced
 
 
 def main():

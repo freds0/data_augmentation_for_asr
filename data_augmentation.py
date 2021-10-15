@@ -281,7 +281,7 @@ class DataAugmentation():
 
         # Adding noise to sound
         noise_rate = random.uniform(self.noise_range_min, self.noise_range_max)
-        aug_data = self.aa.add_noise(aug_data noise_rate)
+        aug_data = self.aa.add_noise(aug_data, noise_rate)
 
         # inserting asr-noises
         noise_filepath = random.choice(self.noises_list).strip()

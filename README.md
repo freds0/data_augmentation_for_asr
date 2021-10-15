@@ -56,6 +56,22 @@ Choose the options you want in the corresponding configuration file, defining th
 ```
 Each setting (light, moderate or heavy) defines different intensities of the data augmentation options.
 
+## Metadata File
+
+To apply data augmentation to a dataset, you must pass the metadata.csv file as a parameter in the following format:
+
+```sh
+filepath | filesize | text
+```
+
+If you only have a directory containing the files you want to perform data augmentation, just use a script to create a metadata.csv file.
+
+```sh
+python utils/create_metadata_from_wavs_dir --input_dir=wavs_dir --output_file=metadata.csv
+```
+
+This command will create the csv file in the format needed for execution.
+
 ## Executing
 
 ```sh
